@@ -18,20 +18,13 @@ void print(struct node *ptr)
 }
 
 //Function to insert a node at the first 
-struct node *insertAtEnd(struct node *head,int data )
+struct node*insertAtFirst(struct node *head,int data )
 {
     struct node *ptr=(struct node*)malloc(sizeof(struct node));
-    struct node *p;
-    p=head;
-
-    while(p->next!=NULL)
-    {
-        p=p->next;
-    }
-    p->next=ptr;
+    ptr->next=head;
     ptr->data=data;
-    ptr->next=NULL;
-    return head;
+    return ptr;
+
 }
 
 int main()
@@ -58,7 +51,6 @@ int main()
 
     print(head);                       //Printing the old Linked list
     cout<<"New Linked List"<<endl;
-    head=insertAtEnd(head,22);
-
+    head=insertAtFirst(head,55);
     print(head);                       //Printing the new Linked List
 }
