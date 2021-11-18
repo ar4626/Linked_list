@@ -11,16 +11,19 @@ struct node *head,*ptr,*newNode;
 
 void createNode(int n)
 {
-    newNode=(struct node*)malloc(sizeof(struct node));
-    newNode->data=n;
-    newNode->next=NULL;
+    
     if(head==NULL)
     {
-        head=newNode;
+        head=(struct node*)malloc(sizeof(struct node));
+        head->data=n;
+        head->next=NULL;
         ptr=head;
     }
     else
     {
+        newNode=(struct node*)malloc(sizeof(struct node));
+        newNode->data=n;
+        newNode->next=NULL;
         ptr->next=newNode;
         ptr=newNode;
     }
