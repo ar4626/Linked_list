@@ -6,10 +6,38 @@ struct node
 {
     int data;
     struct node *next;
-};
+}*head,*ptr,*newNode;
 
-void print(struct node *ptr)
+void createNode()
 {
+    int n,data;
+    cout << "Enter the number of nodes \n";
+    cin >> n;
+    cout<<"Enter the value\n";
+    for (int i = 0; i < n; i++)
+    {
+        cin>>data;
+        if (head == NULL)
+        {
+            head = (struct node *)malloc(sizeof(struct node));
+            head->data = data;
+            head->next = NULL;
+            ptr = head;
+        }
+        else
+        {
+            newNode = (struct node *)malloc(sizeof(struct node));
+            newNode->data = data;
+            newNode->next = NULL;
+            ptr->next = newNode;
+            ptr = newNode;
+        }
+    }
+}
+
+void print()
+{
+    ptr=head;
     while(ptr!=NULL)
     {
         cout<<"Element : "<<ptr->data<<endl;
@@ -18,39 +46,19 @@ void print(struct node *ptr)
 }
 
 //Function to insert a node at the first 
-struct node*insertAtFirst(struct node *head,int data )
+void insertAtFirst (int data )
 {
-    struct node *ptr=(struct node*)malloc(sizeof(struct node));
+    ptr=(struct node*)malloc(sizeof(struct node));
     ptr->next=head;
     ptr->data=data;
-    return ptr;
-
+    head=ptr;
 }
 
 int main()
 {
-    struct node *head,*second,*third,*forth;
-
-    //Allocation of memory for nodes in the linked list 
-    head=(struct node*)malloc(sizeof(struct node));
-    second=(struct node*)malloc(sizeof(struct node));
-    third=(struct node*)malloc(sizeof(struct node));
-    forth=(struct node*)malloc(sizeof(struct node));
-
-    head->data=10;
-    head->next=second;
-
-    second->data=20;
-    second->next=third;
-
-    third->data=30;
-    third->next=forth;
-
-    forth->data=40;
-    forth->next=NULL;
-
-    print(head);                       //Printing the old Linked list
+    createNode();
+    print();                       //Printing the old Linked list
     cout<<"New Linked List"<<endl;
-    head=insertAtFirst(head,55);
-    print(head);                       //Printing the new Linked List
+    insertAtFirst(55);
+    print();                       //Printing the new Linked List
 }

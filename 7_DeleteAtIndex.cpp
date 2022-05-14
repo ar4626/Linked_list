@@ -1,12 +1,11 @@
-#include<iostream>
-#include<stdlib.h>
+#include <iostream>
 using namespace std;
 
-struct node 
+struct node
 {
     int data;
     struct node *next;
-}*head,*newNode,*ptr;
+}*head,*ptr,*newNode;
 
 void createNode()
 {
@@ -35,8 +34,10 @@ void createNode()
     }
 }
 
-void print(struct node *ptr)
+
+void display()
 {
+    ptr=head;
     while(ptr!=NULL)
     {
         cout<<"Element : "<<ptr->data<<endl;
@@ -44,40 +45,28 @@ void print(struct node *ptr)
     }
 }
 
-//Function to insert a node at the first 
-void insertAtIndex()
-{
-    int data,index;
-    cout<<"Enter Data: \n";
-    cin>>data;
-    cout<<"Enter Index : \n";
-    cin>>index;
-    ptr= head;
-    ptr=(struct node *)malloc(sizeof(struct node));
-    ptr->data=data;
-
-    struct node *p=head;
-    int i=0;
-
-    while(i!=index-1)
-    {
-        p=p->next;
-        i++;
-    }
-    ptr->next=p->next;
-    p->next=ptr;
-    
-
+void deleteAtIndex(){
+	int index;
+	cout<<"Enter index to delete:  ";
+	cin>>index;
+	int i =0;
+	ptr = head;
+	struct node *p = ptr -> next;
+	while(i != index -1 ){
+		ptr = ptr -> next;
+		p = p -> next;
+		i++;
+	}
+	ptr -> next = p -> next;
+	
+	
 }
-
 int main()
 {
-    
     createNode();
+    //display();
+    deleteAtIndex();
+    display();
 
-    print(head);                       //Printing the old Linked list
-    cout<<"New Linked List"<<endl;
-    insertAtIndex();
-    
-    print(head);                       //Printing the new Linked List
 }
+

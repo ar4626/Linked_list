@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 struct node
@@ -7,42 +7,46 @@ struct node
     struct node *next;
 };
 
-struct node *head,*ptr,*newNode;
+struct node *head, *ptr, *newNode;
 
-void createNode(int n)
+void createNode()
 {
-    
-    if(head==NULL)
+    int n,data;
+    cout << "Enter the number of nodes \n";
+    cin >> n;
+    cout<<"Enter the value\n";
+    for (int i = 0; i < n; i++)
     {
-        head=(struct node*)malloc(sizeof(struct node));
-        head->data=n;
-        head->next=NULL;
-        ptr=head;
-    }
-    else
-    {
-        newNode=(struct node*)malloc(sizeof(struct node));
-        newNode->data=n;
-        newNode->next=NULL;
-        ptr->next=newNode;
-        ptr=newNode;
+        cin>>data;
+        if (head == NULL)
+        {
+            head = (struct node *)malloc(sizeof(struct node));
+            head->data = data;
+            head->next = NULL;
+            ptr = head;
+        }
+        else
+        {
+            newNode = (struct node *)malloc(sizeof(struct node));
+            newNode->data = data;
+            newNode->next = NULL;
+            ptr->next = newNode;
+            ptr = newNode;
+        }
     }
 }
 void print()
 {
-    struct node *ptr;
-    ptr=head;
-    while(ptr != NULL)
+    ptr = head;
+    while (ptr != NULL)
     {
-     cout <<"Element : " <<ptr ->data << endl;
-     ptr = ptr->next;
+        cout << "Element : " << ptr->data << endl;
+        ptr = ptr->next;
     }
 }
 
 int main()
 {
-    createNode(1);
-    createNode(2);
-    createNode(3);
+    createNode();
     print();
 }

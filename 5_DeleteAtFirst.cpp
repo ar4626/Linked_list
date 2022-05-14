@@ -1,13 +1,12 @@
-#include<iostream>
-#include<stdlib.h>
+#include <iostream>
 using namespace std;
 
-struct node 
+struct node
 {
     int data;
     struct node *next;
-}*newNode,*ptr,*head;
-//NOde creation
+} * head, *ptr, *newNode;
+
 void createNode()
 {
     int n,data;
@@ -35,7 +34,14 @@ void createNode()
     }
 }
 
-void print()
+void deleteAtFirst()
+{
+    ptr = head;
+    head = head->next;
+    free(ptr);
+}
+
+void display()
 {
     ptr=head;
     while(ptr!=NULL)
@@ -44,31 +50,10 @@ void print()
         ptr=ptr->next;
     }
 }
-
-//Function to insert a node at the end
-void insertAtEnd(int data )
-{
-    ptr=(struct node*)malloc(sizeof(struct node));
-    struct node *p;
-    p=head;
-
-    while(p->next!=NULL)
-    {
-        p=p->next;
-    }
-    p->next=ptr;
-    ptr->data=data;
-    ptr->next=NULL;
-    
-}
-
 int main()
 {
     createNode();
-
-    print();                       //Printing the old Linked list
-    cout<<"New Linked List"<<endl;
-    insertAtEnd(22);
-
-    print();                       //Printing the new Linked List
+    display();
+    deleteAtFirst();
+    display();
 }
